@@ -1,10 +1,34 @@
-.header
+@import "src/app/styles/mixins"
 
-  &-wrapper
-    width: 100%
+.header
+  width: 100%
+  border-bottom: 1px solid $c-light-gray
 
 .nav
-  padding: 15px 0
-  max-width: 1200px
+  @include flex-row
+  align-items: center
+  max-width: 230px
   width: 100%
-  margin: 0 auto
+  justify-content: space-between
+
+  &-link
+    border: 1px solid $c-primary-purple
+    padding: 8px 10px
+    border-radius: 9px
+    @include content-16
+    color: $c-primary-purple
+
+    &:hover
+      background: $c-primary-purple
+      color: white
+
+  &-wrapper
+    padding: 15px 0 15px 0
+    max-width: 1200px
+    width: 100%
+    margin: 0 auto
+    @include flex-row
+    justify-content: space-between
+
+    h1
+      @include h1

@@ -1,3 +1,20 @@
-<form>
-  123
+<form class="login-page">
+  <h2>
+    Авторизация
+  </h2>
+  <mat-form-field>
+    <mat-label>Почта</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Пароль</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <span class="login-invite">
+    Еще нет аккаунта? <a routerLink="/registration"> Создайте его </a>
+  </span>
+
+  <button mat-raised-button color="primary">Войти</button>
 </form>

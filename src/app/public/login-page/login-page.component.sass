@@ -1,0 +1,22 @@
+@import "src/app/styles/mixins"
+
+.login
+
+  &-page
+    display: flex
+    flex-direction: column
+    margin: 100px auto 0 auto
+    padding: 25px
+    border-radius: 9px
+    box-shadow: 0 0 10px 2px rgba(34, 60, 80, 0.2)
+    height: 40vh
+    max-width: 700px
+    width: 100%
+
+    h2
+      @include h2
+      margin-bottom: 15px
+
+  &-invite
+    @include content-14
+    margin-bottom: 15px

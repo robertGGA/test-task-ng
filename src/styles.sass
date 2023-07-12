@@ -1,37 +1,52 @@
-*, *:before, *:after
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap')
+@import "src/app/styles/typographics"
+
+*
   box-sizing: border-box
 
-html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video
-  margin: 0
-  padding: 0
-  border: 0
-  font-size: 100%
-  font: inherit
-  vertical-align: baseline
-  text-rendering: optimizeLegibility
-  -webkit-font-smoothing: antialiased
-  text-size-adjust: none
+  &::before, &::after
+    box-sizing: border-box
 
-footer, header, nav, section, main
-  display: block
+
+ul[class], ol[class]
+  padding: 0
+
+body, h1, h2, h3, h4, p, ul[class], ol[class], li, figure, figcaption, blockquote, dl, dd
+  margin: 0
 
 body
-  line-height: 1
+  min-height: 100vh
+  scroll-behavior: smooth
+  text-rendering: optimizeSpeed
+  line-height: 1.5
 
-ol, ul
+
+ul[class], ol[class]
   list-style: none
 
-blockquote, q
-  quotes: none
 
-blockquote:before, blockquote:after, q:before, q:after
-  content: ''
-  content: none
+a:not([class])
+  text-decoration-skip-ink: auto
 
-table
-  border-collapse: collapse
-  border-spacing: 0
 
-input
-  -webkit-appearance: none
-  border-radius: 0
+img
+  max-width: 100%
+  display: block
+
+
+article > * + *
+  margin-top: 1em
+
+
+input, button, textarea, select
+  font: inherit
+
+a
+  text-decoration: none
+
+@media (prefers-reduced-motion: reduce)
+  *
+    animation-duration: 0.01ms !important
+    animation-iteration-count: 1 !important
+    transition-duration: 0.01ms !important
+    scroll-behavior: auto !important
