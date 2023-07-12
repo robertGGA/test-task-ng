@@ -1,20 +1,23 @@
-<form class="login-page">
+<form (submit)="onSubmit()" [formGroup]="loginGroup" class="login-page">
   <h2>
     Авторизация
   </h2>
   <mat-form-field>
     <mat-label>Почта</mat-label>
-    <input matInput>
+    <input formControlName="email" matInput>
+    <mat-error *ngIf="emailControl.errors?.['pattern']">
+      Введите корректную почту
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Пароль</mat-label>
-    <input matInput>
+    <input type="password" formControlName="password" matInput>
   </mat-form-field>
 
   <span class="login-invite">
     Еще нет аккаунта? <a routerLink="/registration"> Создайте его </a>
   </span>
 
-  <button mat-raised-button color="primary">Войти</button>
+  <button [disabled]="hasNoErrors" mat-raised-button color="primary">Войти</button>
 </form>
