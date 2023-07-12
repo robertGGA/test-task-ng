@@ -7,12 +7,13 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "sass",
+          "changeDetection": "OnPush"
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "rg",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
