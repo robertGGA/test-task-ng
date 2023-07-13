@@ -5,12 +5,19 @@
     </h1>
 
     <nav class="nav">
-      <a class="nav-link" routerLink="/login">
-        Авторизация
-      </a>
-      <a class="nav-link" routerLink="/registration">
-        Регистрация
-      </a>
+      <ng-container *ngIf="!isUserAuthorized; else authorized">
+        <a class="nav-link" routerLink="/login">
+          Авторизация
+        </a>
+        <a class="nav-link" routerLink="/registration">
+          Регистрация
+        </a>
+      </ng-container>
+      <ng-template #authorized>
+        <button (click)="logout()" class="nav-link">
+          Выход
+        </button>
+      </ng-template>
     </nav>
   </div>
 </header>

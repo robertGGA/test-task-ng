@@ -1,3 +1,33 @@
-<form>
-  regpage
+<form (submit)="onSubmit()" [formGroup]="regGroup" class="reg-page">
+  <h2>
+    Регистрация
+  </h2>
+  <mat-form-field>
+    <mat-label>Почта</mat-label>
+    <input formControlName="email" matInput required>
+    <mat-error class="error-message" *ngIf="emailControl.errors?.['pattern']">
+      Введите корректную почту
+    </mat-error>
+    <mat-error class="error-message" *ngIf="emailControl.errors?.['minlength']">
+      Минимальная длинна почты - 5 символов
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Пароль</mat-label>
+    <input type="password" formControlName="password" matInput required>
+    <mat-error *ngIf="passwordControl.errors?.['minlength']">
+      Минимальная длинна пароля - 8 символов
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Повторите пароль</mat-label>
+    <input type="password" formControlName="repeatPassword" matInput required>
+  </mat-form-field>
+
+  <button [disabled]="hasNoErrors" mat-raised-button color="primary">Зарегистрироваться</button>
+  <mat-error *ngIf="isPasswordsSame">
+    Пароли не совпадают
+  </mat-error>
 </form>

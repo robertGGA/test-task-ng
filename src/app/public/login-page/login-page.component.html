@@ -20,4 +20,7 @@
   </span>
 
   <button [disabled]="hasNoErrors" mat-raised-button color="primary">Войти</button>
+  <mat-error *ngIf="loginGroup.errors?.['pseudoServerError']">
+    {{loginGroup.errors?.['pseudoServerError']}}
+  </mat-error>
 </form>

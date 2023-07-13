@@ -11,6 +11,11 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'login'
+      },
+      {
         path: 'login',
         component: LoginPageComponent
       },
@@ -24,6 +29,11 @@ const routes: Routes = [
         canActivate: [authGuard]
       }
     ]
+  },
+  {
+    path: "**",
+    pathMatch: 'full',
+    redirectTo: "login"
   }
 ];
 

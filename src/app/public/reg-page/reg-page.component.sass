@@ -1,0 +1,14 @@
+@import "src/app/styles/mixins"
+
+.reg
+  &-page
+    @include fake-modal-page
+
+    mat-form-field
+      margin-top: 15px
+
+      .error-message
+        display: none
+
+        &:first-child
+          display: block

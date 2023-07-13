@@ -2,9 +2,13 @@ import {ChangeDetectionStrategy, Component, inject, OnInit,} from '@angular/core
 import {CommonModule} from '@angular/common';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {emailRegex} from "@core/utils/form-helper";
+import {AuthService} from "@core/services/auth.service";
+import {User} from "@core/models/user";
+import {DestroyService} from "@core/services/destroy.service";
+import {catchError, takeUntil, throwError} from "rxjs";
 
 @Component({
   selector: 'rg-login-page',
@@ -12,12 +16,16 @@ import {emailRegex} from "@core/utils/form-helper";
   imports: [CommonModule, MatInputModule, MatButtonModule, RouterLink, ReactiveFormsModule],
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.sass'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DestroyService]
 })
 export class LoginPageComponent implements OnInit {
 
   loginGroup!: FormGroup;
   private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private destroy$ = inject(DestroyService);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.loginGroup = this.fb.group({
@@ -32,7 +40,17 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.loginGroup.value);
+    this.authService.login(this.loginGroup.value as User)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError(err => throwError(err))
+      ).subscribe(() => {
+      this.router.navigate(['profile']);
+    }, err => {
+      this.loginGroup.setErrors({
+        'pseudoServerError': err
+      });
+    })
   }
 
   get emailControl(): AbstractControl {
