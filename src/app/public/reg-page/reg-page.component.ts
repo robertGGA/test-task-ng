@@ -74,16 +74,11 @@ export class RegPageComponent implements OnInit {
     return this.regGroup.get('password')!;
   }
 
-  get repeatPasswordControl(): AbstractControl {
-    return this.regGroup.get('repeatPassword')!;
-  }
-
   get hasNoErrors(): boolean {
     return !(!this.passwordControl.errors && !this.emailControl.errors && !this.isPasswordsSame)
   }
 
   get isPasswordsSame(): boolean {
-    console.log(this.regGroup.errors?.['notSame']);
     return this.regGroup.errors?.['notSame'];
   }
 

@@ -1,0 +1,21 @@
+<ng-container *ngIf="post$ | async as post; else empty">
+  <div class="page">
+    <a class="return" routerLink="/posts">
+      Вернуться
+    </a>
+    <h2 class="page-title">
+      {{post.title}}
+    </h2>
+
+    <p>
+      {{post.body}}
+    </p>
+
+  </div>
+</ng-container>
+
+<ng-template #empty>
+  <h2>
+    Ничего не найдено
+  </h2>
+</ng-template>

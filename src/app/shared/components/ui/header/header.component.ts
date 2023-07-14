@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from "@angular/router";
 import {AuthService} from "@core/services/auth.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'rg-header',
@@ -11,12 +12,14 @@ import {AuthService} from "@core/services/auth.service";
   styleUrls: ['./header.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   authService = inject(AuthService); //Можно было конечно написать директиву на отображения контента, но ради отображение нескольких кнопок не стал
+  auth$!: Observable<any>
 
-  get isUserAuthorized(): boolean {
-    return this.authService.isAuthorized;
+  ngOnInit() {
+    this.auth$ = this.authService.isAuthorized$
+
   }
 
   logout(): void {

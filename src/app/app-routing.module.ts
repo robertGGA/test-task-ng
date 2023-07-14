@@ -4,6 +4,7 @@ import {LayoutComponent} from "@shared/components/ui/layout/layout.component";
 import {LoginPageComponent} from "@public/login-page/login-page.component";
 import {RegPageComponent} from "@public/reg-page/reg-page.component";
 import {authGuard} from "@core/guards/auth.guard";
+import {nonAuthGuard} from "@core/guards/non-auth.guard";
 
 const routes: Routes = [
   {
@@ -17,14 +18,16 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        component: LoginPageComponent
+        component: LoginPageComponent,
+        canActivate: [nonAuthGuard]
       },
       {
         path: 'registration',
-        component: RegPageComponent
+        component: RegPageComponent,
+        canActivate: [nonAuthGuard]
       },
       {
-        path: 'profile',
+        path: 'posts',
         loadChildren: () => import('@app/user/user.module').then(m => m.UserModule),
         canActivate: [authGuard]
       }

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit,} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit,} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
@@ -26,6 +26,7 @@ export class LoginPageComponent implements OnInit {
   private authService = inject(AuthService);
   private destroy$ = inject(DestroyService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.loginGroup = this.fb.group({
@@ -45,7 +46,8 @@ export class LoginPageComponent implements OnInit {
         takeUntil(this.destroy$),
         catchError(err => throwError(err))
       ).subscribe(() => {
-      this.router.navigate(['profile']);
+        console.log('navigated')
+      this.router.navigateByUrl('/posts');
     }, err => {
       this.loginGroup.setErrors({
         'pseudoServerError': err
