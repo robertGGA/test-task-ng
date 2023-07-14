@@ -15,7 +15,7 @@ import {Observable} from "rxjs";
 export class HeaderComponent implements OnInit {
 
   authService = inject(AuthService); //Можно было конечно написать директиву на отображения контента, но ради отображение нескольких кнопок не стал
-  auth$!: Observable<any>
+  auth$!: Observable<boolean>
 
   ngOnInit() {
     this.auth$ = this.authService.isAuthorized$
